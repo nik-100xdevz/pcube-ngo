@@ -1,6 +1,20 @@
 import { Link } from "wouter";
 import { Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
 
+const footerStats = [
+  { value: "120+", label: "Athletes Trained" },
+  { value: "15", label: "State Selections" },
+  { value: "2", label: "National Players" },
+  { value: "40+", label: "Community Volunteers" },
+];
+
+const partnerNames = [
+  "Thane School Network",
+  "District Sports Office",
+  "Grassroots Coaches Collective",
+  "Community Sponsor Circle",
+];
+
 const quickLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About Us" },
@@ -45,6 +59,75 @@ export default function Footer() {
   return (
     <footer className="bg-[hsl(240,10%,3%)] border-t border-[hsl(var(--border))] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="mb-12 border border-[hsl(var(--border))] bg-[hsl(var(--background))]/5 p-6 lg:p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1">
+              <h3 className="font-display text-sm tracking-widest text-[hsl(var(--foreground))] mb-4">
+                QUICK IMPACT SNAPSHOT
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                {footerStats.map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="border border-[hsl(var(--border))] px-3 py-3"
+                  >
+                    <p className="font-display text-2xl text-[hsl(var(--primary))]">
+                      {stat.value}
+                    </p>
+                    <p className="text-[11px] tracking-wide text-[hsl(var(--muted-foreground))] mt-1">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <h3 className="font-display text-sm tracking-widest text-[hsl(var(--foreground))] mb-4">
+                PARTNER NETWORK
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {partnerNames.map((name) => (
+                  <div
+                    key={name}
+                    className="border border-[hsl(var(--border))] px-3 py-3 text-xs tracking-wide text-[hsl(var(--muted-foreground))] bg-[hsl(var(--background))]/10"
+                  >
+                    {name.toUpperCase()}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-1">
+              <h3 className="font-display text-sm tracking-widest text-[hsl(var(--foreground))] mb-2">
+                NEWSLETTER
+              </h3>
+              <p className="text-sm text-[hsl(var(--muted-foreground))] mb-4">
+                Get stories, player milestones, and upcoming events in your
+                inbox.
+              </p>
+              <form className="space-y-3" aria-label="Newsletter signup form">
+                <label htmlFor="footer-newsletter" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  id="footer-newsletter"
+                  type="email"
+                  required
+                  placeholder="Enter your email"
+                  className="w-full bg-[hsl(var(--background))]/20 border border-[hsl(var(--border))] px-3 py-2.5 text-sm text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground))] outline-none focus:border-[hsl(var(--primary))]"
+                />
+                <button
+                  type="submit"
+                  className="w-full bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-display tracking-widest text-xs px-4 py-3 hover:brightness-110 transition-all duration-200"
+                >
+                  SUBSCRIBE
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-3">

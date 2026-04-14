@@ -1,7 +1,18 @@
 import { useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import {
+  ArrowRight,
+  Backpack,
+  BookOpen,
+  ChevronDown,
+  Dumbbell,
+  Flag,
+  Medal,
+  ShieldCheck,
+  Trophy,
+  Users,
+} from "lucide-react";
 import ImpactStats from "@/components/sections/ImpactStats";
 import ProgramCard from "@/components/sections/ProgramCard";
 import StudentProfile from "@/components/sections/StudentProfile";
@@ -87,6 +98,51 @@ const testimonials = [
   },
 ];
 
+const impactHighlights = [
+  {
+    label: "Athletes Trained",
+    value: "120+",
+    icon: Users,
+  },
+  {
+    label: "State Selections",
+    value: "15",
+    icon: Trophy,
+  },
+  {
+    label: "National Players",
+    value: "2",
+    icon: Medal,
+  },
+];
+
+const whyPcube = [
+  {
+    title: "Structured Training Programs",
+    description:
+      "Age-wise, skill-specific coaching plans designed for sustainable performance growth.",
+    icon: Dumbbell,
+  },
+  {
+    title: "Nutrition & Kit Support",
+    description:
+      "From sticks and shoes to recovery and nutrition guidance, we remove access barriers.",
+    icon: Backpack,
+  },
+  {
+    title: "Academic Mentoring",
+    description:
+      "We help athletes balance school and sport with mentoring and discipline systems.",
+    icon: BookOpen,
+  },
+  {
+    title: "Competition Exposure",
+    description:
+      "Players progress from local grounds to district, state, and national tournament pathways.",
+    icon: Flag,
+  },
+];
+
 const photoStrip = [
   {
     url: "https://lh3.googleusercontent.com/pw/AP1GczMrKHHu7zvAclrA0-REjQVaDunGh1dDwGiaJhKulmSMGTovigEEclrPPLdjORuHdXZUzmA18Er80PS-9t91Wx63tfhFFTh_wsz-q5DIXlct4k2Ks65jVa6OLnhmaL1PrTGEufeve0EozZ1Lvr6ZVGzI=w1376-h917-s-no-gm?authuser=0",
@@ -105,6 +161,22 @@ const photoStrip = [
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    document.title =
+      "PCube Foundation – Empowering India's Future Athletes (Sports NGO)";
+
+    let descriptionMeta = document.querySelector(
+      'meta[name="description"]',
+    ) as HTMLMetaElement | null;
+    if (!descriptionMeta) {
+      descriptionMeta = document.createElement("meta");
+      descriptionMeta.name = "description";
+      document.head.appendChild(descriptionMeta);
+    }
+    descriptionMeta.content =
+      "PCube Foundation discovers and trains underprivileged youth in India through expert coaching, equipment support, and competition pathways that build future champions.";
+  }, []);
 
   useEffect(() => {
     if (prefersReduced) return;
@@ -164,7 +236,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.div
+            {/* <motion.div
               initial={prefersReduced ? {} : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -174,7 +246,7 @@ export default function Home() {
               <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
                 THANE DISTRICT · MAHARASHTRA · INDIA
               </span>
-            </motion.div>
+            </motion.div> */}
 
             <motion.h1
               initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
@@ -186,13 +258,11 @@ export default function Home() {
               }}
               className="font-display text-[clamp(3rem,10vw,8rem)] leading-[0.9] tracking-tight text-[hsl(var(--foreground))] max-w-4xl"
             >
-              TWO CHILDREN
+              FROM VILLAGE GROUNDS
               <br />
-              FROM THANE
+              TO <span className="text-[hsl(var(--primary))]">NATIONAL</span>
               <br />
-              <span className="text-[hsl(var(--primary))]">NOW COMPETE</span>
-              <br />
-              FOR INDIA.
+              ARENAS.
             </motion.h1>
 
             <motion.p
@@ -205,10 +275,11 @@ export default function Home() {
               }}
               className="mt-8 text-[hsl(var(--muted-foreground))] text-lg leading-relaxed max-w-xl"
             >
-              PCube Foundation gives underprivileged children across Thane
-              District a structured, supported pathway into competitive sports
-              at the national level. This is how transformation begins — one
-              session, one child, one chance.
+              At PCube Foundation, we discover and train underprivileged youth
+              in India's towns and villages. Through expert coaching, equipment
+              support, and competition pathways, we create future hockey and
+              sports champions. Join our mission to unlock talent with Prospect.
+              Progress. Play.
             </motion.p>
 
             <motion.div
@@ -224,29 +295,53 @@ export default function Home() {
                   className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-display tracking-widest text-sm px-8 py-4 flex items-center gap-2 hover:brightness-110 transition-all duration-200"
                   data-testid="button-donate-hero"
                 >
-                  DONATE NOW <ArrowRight size={14} />
-                </motion.button>
-              </Link>
-              <Link href="/sponsors">
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="border border-[hsl(var(--foreground))]/30 text-[hsl(var(--foreground))] font-display tracking-widest text-sm px-8 py-4 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-all duration-200"
-                  data-testid="button-sponsor-hero"
-                >
-                  BECOME A SPONSOR
+                  DONATE <ArrowRight size={14} />
                 </motion.button>
               </Link>
               <Link href="/get-involved">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
+                  className="border border-[hsl(var(--foreground))]/30 text-[hsl(var(--foreground))] font-display tracking-widest text-sm px-8 py-4 hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-all duration-200"
+                  data-testid="button-sponsor-hero"
+                >
+                  APPLY AS ATHLETE
+                </motion.button>
+              </Link>
+              <Link href="/sponsors">
+                <motion.button
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   className="text-[hsl(var(--muted-foreground))] font-display tracking-widest text-sm px-4 py-4 hover:text-[hsl(var(--foreground))] transition-colors duration-200 flex items-center gap-2"
                   data-testid="button-join-hero"
                 >
-                  JOIN THE MISSION →
+                  SPONSOR AN ATHLETE →
                 </motion.button>
               </Link>
+            </motion.div>
+
+            <motion.div
+              initial={prefersReduced ? {} : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              {[
+                "80G Tax Exemption",
+                "Child-Safe Coaching Practices",
+                "Transparent Impact Reporting",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center gap-2 border border-[hsl(var(--foreground))]/20 px-3 py-1.5 text-xs tracking-wide text-[hsl(var(--muted-foreground))]"
+                >
+                  <ShieldCheck
+                    size={14}
+                    className="text-[hsl(var(--primary))]"
+                  />
+                  {item}
+                </span>
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -264,8 +359,88 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* IMPACT HIGHLIGHTS */}
+      <section
+        aria-label="Impact highlights"
+        className="py-12 bg-[hsl(var(--background))]"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            {impactHighlights.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.label}
+                  initial={prefersReduced ? {} : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12, duration: 0.55 }}
+                  className="border border-[hsl(var(--border))] bg-[hsl(var(--card))] p-6"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 grid place-items-center bg-[hsl(var(--primary))]/10 text-[hsl(var(--primary))]">
+                      <Icon size={18} />
+                    </div>
+                    <div>
+                      <p className="font-display text-3xl tracking-tight text-[hsl(var(--foreground))]">
+                        {item.value}
+                      </p>
+                      <p className="text-sm text-[hsl(var(--muted-foreground))]">
+                        {item.label}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* IMPACT STATS */}
       <ImpactStats />
+
+      {/* HOW WE HELP */}
+      <section
+        aria-label="How we help"
+        className="py-20 lg:py-24 bg-[hsl(var(--muted))]/20"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="max-w-4xl">
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              HOW WE HELP
+            </span>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))]">
+              FROM RAW TALENT TO REAL OPPORTUNITY
+            </h2>
+            <p className="mt-6 text-[hsl(var(--muted-foreground))] text-base lg:text-lg leading-relaxed">
+              PCube identifies raw sporting talent in rural communities and
+              provides the training, gear, and exposure these young athletes
+              need. Our proven pipeline takes players from local fields to
+              district, state and even national levels. By focusing first on
+              hockey — India's game of passion — we're already seeing champions
+              in the making.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/get-involved">
+                <span className="inline-flex cursor-pointer items-center gap-2 bg-[hsl(var(--primary))] px-6 py-3 text-xs font-display tracking-widest text-[hsl(var(--primary-foreground))] hover:brightness-110 transition-all duration-200">
+                  APPLY AS ATHLETE
+                </span>
+              </Link>
+              <Link href="/sponsors">
+                <span className="inline-flex cursor-pointer items-center gap-2 border border-[hsl(var(--border))] px-6 py-3 text-xs font-display tracking-widest text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-all duration-200">
+                  SPONSOR AN ATHLETE
+                </span>
+              </Link>
+              <Link href="/donate">
+                <span className="inline-flex cursor-pointer items-center gap-2 border border-[hsl(var(--border))] px-6 py-3 text-xs font-display tracking-widest text-[hsl(var(--foreground))] hover:border-[hsl(var(--primary))] hover:text-[hsl(var(--primary))] transition-all duration-200">
+                  DONATE
+                </span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* MANIFESTO */}
       <section
@@ -336,6 +511,97 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* FEATURED STORY */}
+      <section
+        aria-label="Featured athlete story"
+        className="py-20 lg:py-24 border-y border-[hsl(var(--border))]"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={prefersReduced ? {} : { opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative aspect-[16/10] overflow-hidden"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200&q=80&auto=format&fit=crop"
+              alt="Young athletes training on a hockey field"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <p className="absolute bottom-4 left-4 right-4 text-white text-sm font-display tracking-wide">
+              FEATURED STORY · ATHLETE JOURNEY
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={prefersReduced ? {} : { opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              CHAMPIONS IN THE MAKING
+            </span>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))]">
+              MEET AANYA
+            </h2>
+            <p className="mt-5 text-[hsl(var(--muted-foreground))] leading-relaxed">
+              From no cricket gear to district hockey captain — her journey
+              started on a dusty village field. PCube gave Aanya training and
+              support; now she's dreaming Olympic gold.
+            </p>
+            <Link href="/impact">
+              <span className="mt-6 inline-flex cursor-pointer items-center gap-2 text-sm font-display tracking-wider text-[hsl(var(--primary))] hover:gap-3 transition-all duration-200">
+                READ FULL STORY <ArrowRight size={14} />
+              </span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WHY PCUBE */}
+      <section
+        aria-label="Why PCube"
+        className="py-20 lg:py-24 bg-[hsl(var(--card))]"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="mb-10">
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              WHY PCUBE
+            </span>
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))]">
+              A COMPLETE SUPPORT SYSTEM FOR YOUNG ATHLETES
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {whyPcube.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={prefersReduced ? {} : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="border border-[hsl(var(--border))] bg-[hsl(var(--background))] p-6"
+                >
+                  <Icon size={20} className="text-[hsl(var(--primary))]" />
+                  <h3 className="mt-4 font-display text-xl tracking-tight text-[hsl(var(--foreground))]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                    {item.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

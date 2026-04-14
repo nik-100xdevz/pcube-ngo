@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 
 export interface MediaItemType {
   id: number;
@@ -148,6 +148,19 @@ const GalleryModal = ({
 }: GalleryModalProps) => {
   const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
@@ -163,6 +176,30 @@ const GalleryModal = ({
         }}
         className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-40"
       >
+        <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-4 py-3 bg-black/35 backdrop-blur-sm">
+          <motion.button
+            className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-800 hover:bg-white"
+            onClick={onClose}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label="Go back to gallery"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to gallery
+          </motion.button>
+
+          <motion.button
+            className="inline-flex items-center gap-1 rounded-full bg-gray-900/75 px-3 py-1.5 text-xs sm:text-sm font-medium text-white hover:bg-gray-900"
+            onClick={onClose}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            aria-label="Close photo viewer"
+          >
+            <X className="w-3.5 h-3.5" />
+            Close
+          </motion.button>
+        </div>
+
         <div className="h-full flex flex-col">
           <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-50/50">
             <AnimatePresence mode="wait">
@@ -204,15 +241,6 @@ const GalleryModal = ({
             </AnimatePresence>
           </div>
         </div>
-
-        <motion.button
-          className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 p-2 rounded-full bg-gray-200/80 text-gray-700 hover:bg-gray-300/80 text-xs sm:text-sm backdrop-blur-sm"
-          onClick={onClose}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <X className="w-3 h-3" />
-        </motion.button>
       </motion.div>
 
       <motion.div

@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ArrowLeft, X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { BentoGridGalleryDemo } from "@/components/ui/demo";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const categories = [
@@ -23,75 +24,123 @@ type GalleryItem = {
 const gallery: GalleryItem[] = [
   {
     id: 1,
-    category: "Training",
-    title: "Morning drills, winter 2024",
+    category: "Events",
+    title: "Group Photo",
     imageUrl:
-      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczMrKHHu7zvAclrA0-REjQVaDunGh1dDwGiaJhKulmSMGTovigEEclrPPLdjORuHdXZUzmA18Er80PS-9t91Wx63tfhFFTh_wsz-q5DIXlct4k2Ks65jVa6OLnhmaL1PrTGEufeve0EozZ1Lvr6ZVGzI=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 2,
-    category: "Milestones",
-    title: "Arjun's national selection ceremony",
+    category: "Community",
+    title: "PCube Logo Moment",
     imageUrl:
-      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80&auto=format&fit=crop",
-    aspectClass: "aspect-square",
+      "https://lh3.googleusercontent.com/pw/AP1GczO0Uo1Wq3AZ2P6dhO5jrs8wkh7nq-6xYbcBsNSmwyqf50G842ybIqkbktHlPC2cSCVovSXRB33ilUjOkFdwz9fHJGt6BTZ2skwP0qdPJa9SkiEu46qgEf2xzwHfkxdTz8BApqn-mJ5-SkU1JuZzn-aT=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[3/4]",
   },
   {
     id: 3,
     category: "Training",
-    title: "Goalkeeping session",
+    title: "PCube Niche Session",
     imageUrl:
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop",
-    aspectClass: "aspect-[3/4]",
+      "https://lh3.googleusercontent.com/pw/AP1GczNa2XaKWb00wduVEkANE8V-oIMjmMeQCuzQ-m_To8qcyRVRQ9BYW7ELPvDKVrF0DZNNShO3UUVDIG_L3jIbxpZa2fgpTHhAoXAtFjGnThNpskDlKSYXJ1fhdejgk7s8GQ-Dy5r4ZXl9xQNBY7oS8h6q=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[4/3]",
   },
   {
     id: 4,
-    category: "Community",
-    title: "School outreach, Thane Municipal School",
+    category: "Milestones",
+    title: "Coach Awards Distribution",
     imageUrl:
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczNI_LpLp7RoNPSZTmpeDOaanEkfHrXBwqaeKOktToNyigSTUmnhLEoRcPKGsxCZMuIGik0xeQ1ix4ZTdFKTlhlFQUvoPOpRCYGfs57I3hMV_r6wXw17sC7rmxF3wM4k0DCGGDnPUH7duQ-ExynDI75i=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 5,
-    category: "Matches",
-    title: "District championship semi-final",
+    category: "Events",
+    title: "Kit Distribution",
     imageUrl:
-      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczPktW81ud2Fmkq9Ujw4ZEhdYSi00hyKYsovmM0aeeqq-spfJhVJBiMi7dgp1bqQQ1lLNmR9jpfiOAvX49Flon5g15MHhBVW4Rbm5ZF5dn55mhtEGSloYRZ6Rnt-G6vuwGJWHxOa7MRJOeXsCWMBI-uq=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-square",
   },
   {
     id: 6,
-    category: "Events",
-    title: "Annual felicitation ceremony",
+    category: "Training",
+    title: "Ground Training Action",
     imageUrl:
-      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczMy6EX2KZVl7UQnppYqMwJp-wWVoMjkuPgMqqb3KKY-8jxl-E8h6N_9VAXu7tTtlV50Vbxscvulq4o9gXFlToRcg6GbGQl2NNJASrSumEOe29ZLMH8ENngHlqiUS1pXr7fOvCvwf5L9E7bm4vCCbStt=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 7,
-    category: "Training",
-    title: "Fitness conditioning camp",
+    category: "Milestones",
+    title: "Medal Ceremony",
     imageUrl:
-      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczN-PXnmyROLJSqHZzlSCAPsXCJ45yOjxVcBDa7FQxkKKAgBHiNxyb4U-Z6BY8IglWXoXgZ9OX8s7G2q7MXRtO8drHPdXpYCm0YjCMLu1QlHMmValvvRAtORET911sv9G0tMvlFa4Tr4FKxH_FNgpe6D=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-[3/4]",
   },
   {
     id: 8,
-    category: "Milestones",
-    title: "Sneha's school games selection",
+    category: "Events",
+    title: "Junior Kit Distribution",
     imageUrl:
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczNrIr9c5eZ7M8NGOiUVFxzORxrIferxm0u3FO6Cqgv9fd-92wCqPLyrMlDiCnyem2yWTmeHhrun-33nSi5BbLaOJmQfoWeBRZl-_GVy0sezBydDzpmH5M9_EB2oJyHRhhc3C_7lERobT_Cb43fhlPQf=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-square",
   },
   {
     id: 9,
-    category: "Community",
-    title: "Parent orientation day",
+    category: "Training",
+    title: "Coach on Ground",
     imageUrl:
-      "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80&auto=format&fit=crop",
+      "https://lh3.googleusercontent.com/pw/AP1GczMfFOVkuuBY6Sf2jiH7zJFQF_e2GHj3LfAoboKGlcDs9M-gK9THCb0EvW5a40Hagoq-icqboB7b8izWDaReg14-5sds1ni5MztToPLn9GZyHClapeTKVZFtQA7qH_Cta1n4aQ5OokEP8im33RJlIiuO=w1376-h917-s-no-gm?authuser=0",
     aspectClass: "aspect-[4/3]",
+  },
+  {
+    id: 10,
+    category: "Community",
+    title: "Boys Small Kids",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOcMZy0o4hVeMz8LcCdqlr6MK4kq0ChgPhIjvLuii7c9RWU7BSG_JjBjrVR4SQcnUdg7U93u_dVpEpSPUa5_dixKM0mppxHCxEn9pn-Gz5jpnJ54uWnTqhKeO4TVFF0Cpdkb16uLQXnDcQM5Q1KfLHg=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-square",
+  },
+  {
+    id: 11,
+    category: "Training",
+    title: "Training Line-Up",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczO8I_j1jgXl1M6pGESCSYOn7KuJ6kTTP55hkTFQqrNWRc-9iAzbZvEg98UB3M6rV4YMjJJFymdrAK5-A55rPmxVKT6jlVQZQQ6euq9KzrpA5yvOWSwu-TyJRPaOZh4C6ZcBE_EjUVNEm87wvb0WL7tD=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[3/4]",
+  },
+  {
+    id: 12,
+    category: "Training",
+    title: "Ground Session Different",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczNWLTW7HM5WYVud7p9NFreuHqWXFcswjfb3ZhgTCrJlutfeci92uTYqNPdQ1uWYHUGDqxdWZiEaXt6jzL_MnFdViXYvAwlDHVeZZ5mm0gWrddvwcQgzOFeUrA1wIBT6vZIxISCVw02ScrvdDSs9o_8K=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[4/3]",
+  },
+  {
+    id: 13,
+    category: "Milestones",
+    title: "Awards & Recognition",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczM0tyAL5Y9WDB8AjqV4DxOCU0Ep_p9q92Ms2F_uHkdxZg4OVdJZkiB6MwVy5N6xzABITbaArs6GpOZvRQHIpnO1bU0CsCa21F5VIyfEKdilY0SAPUCdrhADdTDj7e7WCkRjFUI5jPGZWhw3UFb7SUSH=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[4/3]",
+  },
+  {
+    id: 14,
+    category: "Matches",
+    title: "Matchday Momentum",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczMkksmAKTZeot_BPN3GGX3hYsIjGWqChjobxLNxOP37IPrcv_AiS5YeTsuqR7OrSrdGm4ChXStspc8N3qOOsn7KipHIHLkzrajSuDUiaiMmpvO-s4m4CJHBGbvtk63QdUzy0OTeqnOadP0A_1ln-TRX=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[4/3]",
+  },
+  {
+    id: 15,
+    category: "Community",
+    title: "PCube Team Spirit",
+    imageUrl:
+      "https://lh3.googleusercontent.com/pw/AP1GczOpw_ZJqh92ZsPQeCZ8om2txVOMyMZJ7lzXr3Ysgp3ohhaWd_phd2b4wiEkzFYiSrTTOt6aCXujyTW8Ergl1w1pEdk6CLuOCGXXHDRXvMcA4w-k55d-lkbn2b66HnqnSK8243AqC8ybbtY5tzmuUL3M=w1376-h917-s-no-gm?authuser=0",
+    aspectClass: "aspect-[3/4]",
   },
 ];
 
@@ -117,6 +166,19 @@ export default function Media() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
   const prefersReduced = useReducedMotion();
+
+  useEffect(() => {
+    if (!lightboxItem) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setLightboxItem(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lightboxItem]);
 
   const filtered =
     activeCategory === "All"
@@ -248,6 +310,22 @@ export default function Media() {
         </div>
       </section>
 
+      {/* INTERACTIVE GALLERY */}
+      {/* <section
+        aria-label="Interactive gallery"
+        className="py-20 lg:py-28 border-t border-[hsl(var(--border))]"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-8">
+          <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+            DRAG & EXPLORE
+          </span>
+          <h2 className="font-display text-4xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+            INTERACTIVE GALLERY
+          </h2>
+        </div>
+        <BentoGridGalleryDemo />
+      </section> */}
+
       {/* VIDEO SECTION */}
       <section
         aria-label="Video gallery"
@@ -326,6 +404,28 @@ export default function Media() {
             onClick={() => setLightboxItem(null)}
             data-testid="lightbox-overlay"
           >
+            <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
+              <button
+                className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-800 hover:bg-white transition-colors"
+                onClick={() => setLightboxItem(null)}
+                aria-label="Back to gallery"
+                data-testid="button-back-lightbox"
+              >
+                <ArrowLeft size={14} />
+                Back to gallery
+              </button>
+
+              <button
+                className="inline-flex items-center gap-1 rounded-full bg-gray-900/75 px-3 py-1.5 text-xs sm:text-sm font-medium text-white hover:bg-gray-900 transition-colors"
+                onClick={() => setLightboxItem(null)}
+                aria-label="Close lightbox"
+                data-testid="button-close-lightbox"
+              >
+                <X size={14} />
+                Close
+              </button>
+            </div>
+
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
@@ -348,14 +448,6 @@ export default function Media() {
                 </span>
               </div>
             </motion.div>
-            <button
-              className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
-              onClick={() => setLightboxItem(null)}
-              aria-label="Close lightbox"
-              data-testid="button-close-lightbox"
-            >
-              <X size={24} />
-            </button>
             <button
               className="absolute left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white transition-colors"
               onClick={() => navigate("prev")}

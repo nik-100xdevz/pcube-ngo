@@ -5,72 +5,100 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import ImpactStats from "@/components/sections/ImpactStats";
 import ProgramCard from "@/components/sections/ProgramCard";
 import StudentProfile from "@/components/sections/StudentProfile";
+import { BentoGridGalleryDemo } from "@/components/ui/demo";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 const programs = [
   {
     sport: "Field Hockey",
-    description: "Our flagship program — structured coaching, equipment support, and a proven pathway to national competition.",
+    description:
+      "Our flagship program — structured coaching, equipment support, and a proven pathway to national competition.",
     status: "active" as const,
     icon: "🏑",
     accentColor: "#f5a623",
-    imageUrl: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=640&q=80&auto=format&fit=crop",
   },
   {
     sport: "Football",
-    description: "Systematic identification and training pipeline for gifted youth footballers across Thane District.",
+    description:
+      "Systematic identification and training pipeline for gifted youth footballers across Thane District.",
     status: "expanding" as const,
     icon: "⚽",
-    imageUrl: "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=640&q=80&auto=format&fit=crop",
   },
   {
     sport: "Athletics",
-    description: "Track & field development program nurturing sprinters, jumpers, and middle-distance runners.",
+    description:
+      "Track & field development program nurturing sprinters, jumpers, and middle-distance runners.",
     status: "expanding" as const,
     icon: "🏃",
-    imageUrl: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=640&q=80&auto=format&fit=crop",
   },
   {
     sport: "Cricket",
-    description: "Structured batting, bowling, and fielding programs with competitive league exposure.",
+    description:
+      "Structured batting, bowling, and fielding programs with competitive league exposure.",
     status: "expanding" as const,
     icon: "🏏",
-    imageUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=640&q=80&auto=format&fit=crop",
   },
   {
     sport: "Kabaddi",
-    description: "Reviving the roots of Indian sport — disciplined training and regional tournament participation.",
+    description:
+      "Reviving the roots of Indian sport — disciplined training and regional tournament participation.",
     status: "expanding" as const,
     icon: "🤼",
-    imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80&auto=format&fit=crop",
   },
   {
     sport: "Badminton",
-    description: "Court-based program with technical skill development and inter-district tournament exposure.",
+    description:
+      "Court-based program with technical skill development and inter-district tournament exposure.",
     status: "expanding" as const,
     icon: "🏸",
-    imageUrl: "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=640&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=640&q=80&auto=format&fit=crop",
   },
 ];
 
 const testimonials = [
-  { quote: "Before PCube, I had talent but no direction. Now I've represented my district at the national level.", author: "Rohit M.", role: "Field Hockey Student" },
-  { quote: "These children train like professionals. PCube's discipline and care changed not just their games — but their futures.", author: "Coach Priya S.", role: "Field Hockey Coach" },
-  { quote: "My son came home with a national selection letter. I didn't believe it was real.", author: "Meena K.", role: "Parent" },
+  {
+    quote:
+      "Before PCube, I had talent but no direction. Now I've represented my district at the national level.",
+    author: "Rohit M.",
+    role: "Field Hockey Student",
+  },
+  {
+    quote:
+      "These children train like professionals. PCube's discipline and care changed not just their games — but their futures.",
+    author: "Coach Priya S.",
+    role: "Field Hockey Coach",
+  },
+  {
+    quote:
+      "My son came home with a national selection letter. I didn't believe it was real.",
+    author: "Meena K.",
+    role: "Parent",
+  },
 ];
 
 const photoStrip = [
   {
-    url: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop",
-    caption: "Training on the field",
+    url: "https://lh3.googleusercontent.com/pw/AP1GczMrKHHu7zvAclrA0-REjQVaDunGh1dDwGiaJhKulmSMGTovigEEclrPPLdjORuHdXZUzmA18Er80PS-9t91Wx63tfhFFTh_wsz-q5DIXlct4k2Ks65jVa6OLnhmaL1PrTGEufeve0EozZ1Lvr6ZVGzI=w1376-h917-s-no-gm?authuser=0",
+    caption: "Group photo · School 9-a-side hockey league",
   },
   {
-    url: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80&auto=format&fit=crop",
-    caption: "Community outreach",
+    url: "https://lh3.googleusercontent.com/pw/AP1GczNI_LpLp7RoNPSZTmpeDOaanEkfHrXBwqaeKOktToNyigSTUmnhLEoRcPKGsxCZMuIGik0xeQ1ix4ZTdFKTlhlFQUvoPOpRCYGfs57I3hMV_r6wXw17sC7rmxF3wM4k0DCGGDnPUH7duQ-ExynDI75i=w1376-h917-s-no-gm?authuser=0",
+    caption: "Coach awards distribution",
   },
   {
-    url: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80&auto=format&fit=crop",
-    caption: "Celebrating champions",
+    url: "https://lh3.googleusercontent.com/pw/AP1GczPktW81ud2Fmkq9Ujw4ZEhdYSi00hyKYsovmM0aeeqq-spfJhVJBiMi7dgp1bqQQ1lLNmR9jpfiOAvX49Flon5g15MHhBVW4Rbm5ZF5dn55mhtEGSloYRZ6Rnt-G6vuwGJWHxOa7MRJOeXsCWMBI-uq=w1376-h917-s-no-gm?authuser=0",
+    caption: "Junior kit distribution",
   },
 ];
 
@@ -94,12 +122,19 @@ export default function Home() {
 
   return (
     <main>
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-[hsl(var(--primary-foreground))]">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-[hsl(var(--primary-foreground))]"
+      >
         Skip to content
       </a>
 
       {/* HERO */}
-      <section id="main-content" aria-label="Hero" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <section
+        id="main-content"
+        aria-label="Hero"
+        className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      >
         <div ref={heroRef} className="absolute inset-0 will-change-transform">
           <img
             src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80&auto=format&fit=crop"
@@ -107,10 +142,20 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-[hsl(240,10%,4%)]/80" />
-          <div className="absolute inset-0" style={{
-            background: "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(43,100%,50%,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 80% 20%, hsl(240,100%,40%,0.06) 0%, transparent 70%)"
-          }} />
-          <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: "linear-gradient(to bottom, transparent, hsl(240,10%,4%))" }} />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(43,100%,50%,0.08) 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 80% 20%, hsl(240,100%,40%,0.06) 0%, transparent 70%)",
+            }}
+          />
+          <div
+            className="absolute bottom-0 left-0 right-0 h-32"
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, hsl(240,10%,4%))",
+            }}
+          />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20">
@@ -126,13 +171,19 @@ export default function Home() {
               className="inline-flex items-center gap-2 mb-8 border border-[hsl(var(--primary))]/40 px-4 py-2"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--primary))] animate-pulse" />
-              <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">THANE DISTRICT · MAHARASHTRA · INDIA</span>
+              <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+                THANE DISTRICT · MAHARASHTRA · INDIA
+              </span>
             </motion.div>
 
             <motion.h1
               initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                delay: 0.35,
+                duration: 0.9,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="font-display text-[clamp(3rem,10vw,8rem)] leading-[0.9] tracking-tight text-[hsl(var(--foreground))] max-w-4xl"
             >
               TWO CHILDREN
@@ -147,10 +198,17 @@ export default function Home() {
             <motion.p
               initial={prefersReduced ? {} : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                delay: 0.6,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="mt-8 text-[hsl(var(--muted-foreground))] text-lg leading-relaxed max-w-xl"
             >
-              PCube Foundation gives underprivileged children across Thane District a structured, supported pathway into competitive sports at the national level. This is how transformation begins — one session, one child, one chance.
+              PCube Foundation gives underprivileged children across Thane
+              District a structured, supported pathway into competitive sports
+              at the national level. This is how transformation begins — one
+              session, one child, one chance.
             </motion.p>
 
             <motion.div
@@ -199,7 +257,10 @@ export default function Home() {
           transition={{ delay: 1.2, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
-          <ChevronDown className="text-[hsl(var(--muted-foreground))] animate-bounce" size={20} />
+          <ChevronDown
+            className="text-[hsl(var(--muted-foreground))] animate-bounce"
+            size={20}
+          />
         </motion.div>
       </section>
 
@@ -207,7 +268,10 @@ export default function Home() {
       <ImpactStats />
 
       {/* MANIFESTO */}
-      <section aria-label="Manifesto" className="py-24 lg:py-36 bg-[hsl(var(--primary))]">
+      <section
+        aria-label="Manifesto"
+        className="py-24 lg:py-36 bg-[hsl(var(--primary))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
           <motion.p
             initial={prefersReduced ? {} : { opacity: 0, y: 40 }}
@@ -225,16 +289,24 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="mt-6 text-[hsl(var(--primary-foreground))]/70 text-lg max-w-2xl mx-auto"
           >
-            Every child who walks through our gates is a prospect. Every session is progress. Every game is play. This is PCube Foundation.
+            Every child who walks through our gates is a prospect. Every session
+            is progress. Every game is play. This is PCube Foundation.
           </motion.p>
         </div>
       </section>
 
       {/* PHOTO STRIP */}
-      <section aria-label="Field photos" className="py-16 lg:py-20 bg-[hsl(var(--background))]">
+      <section
+        aria-label="Field photos"
+        className="py-16 lg:py-20 bg-[hsl(var(--background))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-10">
-          <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">ON THE GROUND</span>
-          <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))] mt-2">IN THE FIELD</h2>
+          <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+            ON THE GROUND
+          </span>
+          <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+            IN THE FIELD
+          </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
           {photoStrip.map((photo, i) => (
@@ -243,7 +315,11 @@ export default function Home() {
               initial={prefersReduced ? {} : { opacity: 0, scale: 0.98 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                delay: i * 0.12,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className="relative aspect-[4/3] overflow-hidden group"
             >
               <img
@@ -254,7 +330,9 @@ export default function Home() {
               />
               <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
               <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
-                <p className="font-display text-sm tracking-wider text-white">{photo.caption.toUpperCase()}</p>
+                <p className="font-display text-sm tracking-wider text-white">
+                  {photo.caption.toUpperCase()}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -266,9 +344,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">MULTI-SPORT ECOSYSTEM</span>
+              <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+                MULTI-SPORT ECOSYSTEM
+              </span>
               <h2 className="font-display text-4xl lg:text-6xl tracking-tight text-[hsl(var(--foreground))] mt-2">
-                WHAT<br />WE DO
+                WHAT WE DO
               </h2>
             </div>
             <Link href="/programs">
@@ -280,7 +360,10 @@ export default function Home() {
         </div>
 
         <div className="overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 px-6 lg:px-10 pb-4" style={{ width: "max-content" }}>
+          <div
+            className="flex gap-4 px-6 lg:px-10 pb-4"
+            style={{ width: "max-content" }}
+          >
             {programs.map((prog) => (
               <ProgramCard key={prog.sport} {...prog} />
             ))}
@@ -288,11 +371,32 @@ export default function Home() {
         </div>
       </section>
 
+      {/* INTERACTIVE GALLERY */}
+      <section
+        aria-label="Interactive gallery"
+        className="py-20 lg:py-28 bg-[hsl(var(--card))]"
+      >
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 mb-8">
+          <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+            INSIDE THE JOURNEY
+          </span>
+          <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+            INTERACTIVE GALLERY
+          </h2>
+        </div>
+        <BentoGridGalleryDemo />
+      </section>
+
       {/* IMPACT STORIES */}
-      <section aria-label="Impact Stories" className="py-20 lg:py-28 bg-[hsl(var(--muted))]/30">
+      <section
+        aria-label="Impact Stories"
+        className="py-20 lg:py-28 bg-[hsl(var(--muted))]/30"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="mb-12">
-            <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">PROOF OF IMPACT</span>
+            <span className="font-display text-xl tracking-widest text-[hsl(var(--primary))]">
+              PROOF OF IMPACT
+            </span>
             <h2 className="font-display text-4xl lg:text-6xl tracking-tight text-[hsl(var(--foreground))] mt-2">
               THE PROSPECTS
             </h2>
@@ -321,13 +425,18 @@ export default function Home() {
       </section>
 
       {/* DONATE CTA BAND */}
-      <section aria-label="Donate call to action" className="py-20 border-t border-[hsl(var(--border))]">
+      <section
+        aria-label="Donate call to action"
+        className="py-20 border-t border-[hsl(var(--border))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="font-display text-[clamp(1.5rem,4vw,3rem)] tracking-tight text-[hsl(var(--foreground))] max-w-xl">
               EVERY RUPEE FUNDS A CHILD'S SHOT AT THE CHAMPIONSHIP PODIUM.
             </p>
-            <p className="mt-2 text-[hsl(var(--muted-foreground))] text-sm">All donations are 80G tax-exempt.</p>
+            <p className="mt-2 text-[hsl(var(--muted-foreground))] text-sm">
+              All donations are 80G tax-exempt.
+            </p>
           </div>
           <Link href="/donate">
             <motion.button
@@ -343,11 +452,18 @@ export default function Home() {
       </section>
 
       {/* COMMUNITY VOICES */}
-      <section aria-label="Community voices" className="py-20 lg:py-28 bg-[hsl(var(--card))]">
+      <section
+        aria-label="Community voices"
+        className="py-20 lg:py-28 bg-[hsl(var(--card))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="mb-12">
-            <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">WHAT THEY SAY</span>
-            <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))] mt-2">COMMUNITY VOICES</h2>
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              WHAT THEY SAY
+            </span>
+            <h2 className="font-display text-4xl lg:text-5xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+              COMMUNITY VOICES
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
@@ -356,15 +472,27 @@ export default function Home() {
                 initial={prefersReduced ? {} : { opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  delay: i * 0.15,
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className="bg-[hsl(var(--background))] border border-[hsl(var(--border))] p-8"
                 data-testid={`testimonial-${i}`}
               >
-                <div className="text-[hsl(var(--primary))] text-4xl font-serif mb-4 leading-none select-none">"</div>
-                <p className="text-[hsl(var(--foreground))] text-sm leading-relaxed mb-6 italic">{t.quote}</p>
+                <div className="text-[hsl(var(--primary))] text-4xl font-serif mb-4 leading-none select-none">
+                  "
+                </div>
+                <p className="text-[hsl(var(--foreground))] text-sm leading-relaxed mb-6 italic">
+                  {t.quote}
+                </p>
                 <div>
-                  <p className="font-display text-sm tracking-wider text-[hsl(var(--primary))]">{t.author.toUpperCase()}</p>
-                  <p className="text-[hsl(var(--muted-foreground))] text-xs mt-1">{t.role}</p>
+                  <p className="font-display text-sm tracking-wider text-[hsl(var(--primary))]">
+                    {t.author.toUpperCase()}
+                  </p>
+                  <p className="text-[hsl(var(--muted-foreground))] text-xs mt-1">
+                    {t.role}
+                  </p>
                 </div>
               </motion.div>
             ))}

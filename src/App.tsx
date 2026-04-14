@@ -27,7 +27,7 @@ function AppRoutes() {
         <Route path="/impact" component={Impact} />
         <Route path="/donate" component={Donate} />
         <Route path="/sponsors" component={Sponsors} />
-        <Route path="/get-involved" component={GetInvolved} />
+        <Route path="/get-involved" component={GetInvolved} /> 
         <Route path="/media" component={Media} />
         <Route path="/contact" component={Contact} />
         <Route component={NotFound} />

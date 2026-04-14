@@ -10,7 +10,15 @@ interface StudentProfileProps {
   imageUrl?: string;
 }
 
-export default function StudentProfile({ name, sport, achievement, quote, journey, initials, imageUrl }: StudentProfileProps) {
+export default function StudentProfile({
+  name,
+  sport,
+  achievement,
+  quote,
+  journey,
+  initials,
+  imageUrl,
+}: StudentProfileProps) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -34,25 +42,39 @@ export default function StudentProfile({ name, sport, achievement, quote, journe
         ) : (
           <>
             <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--primary))]/20 to-transparent" />
-            <span className="font-display text-8xl lg:text-[10rem] text-[hsl(var(--primary))]/20 select-none">{initials}</span>
+            <span className="font-display text-8xl lg:text-[10rem] text-[hsl(var(--primary))]/20 select-none">
+              {initials}
+            </span>
           </>
         )}
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className="inline-flex items-center gap-2 bg-[hsl(var(--primary))] px-4 py-2">
-            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary-foreground))]">{sport.toUpperCase()}</span>
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary-foreground))]">
+              {sport.toUpperCase()}
+            </span>
           </div>
         </div>
       </div>
 
       <div className="p-8 lg:p-12 flex flex-col justify-center bg-[hsl(var(--card))]">
         <div className="mb-4">
-          <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">NATIONAL COMPETITOR</span>
+          <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+            NATIONAL COMPETITOR
+          </span>
         </div>
-        <h3 className="font-display text-4xl lg:text-5xl tracking-wider text-[hsl(var(--foreground))] mb-2">{name.toUpperCase()}</h3>
-        <p className="text-[hsl(var(--primary))] text-sm font-medium mb-6">{achievement}</p>
-        <p className="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed mb-8">{journey}</p>
+        <h3 className="font-display text-4xl lg:text-5xl tracking-wider text-[hsl(var(--foreground))] mb-2">
+          {name.toUpperCase()}
+        </h3>
+        <p className="text-[hsl(var(--primary))] text-sm font-medium mb-6">
+          {achievement}
+        </p>
+        <p className="text-[hsl(var(--muted-foreground))] text-sm leading-relaxed mb-8">
+          {journey}
+        </p>
         <blockquote className="border-l-2 border-[hsl(var(--primary))] pl-6">
-          <p className="text-[hsl(var(--foreground))] text-lg italic leading-relaxed">"{quote}"</p>
+          <p className="text-[hsl(var(--foreground))] text-lg italic leading-relaxed">
+            "{quote}"
+          </p>
         </blockquote>
       </div>
     </motion.article>

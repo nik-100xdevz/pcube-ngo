@@ -10,7 +10,14 @@ interface SponsorTierProps {
   featured?: boolean;
 }
 
-export default function SponsorTier({ name, tagline, investment, funds, benefits, featured }: SponsorTierProps) {
+export default function SponsorTier({
+  name,
+  tagline,
+  investment,
+  funds,
+  benefits,
+  featured,
+}: SponsorTierProps) {
   return (
     <motion.div
       whileHover={{ y: -8, scale: 1.02 }}
@@ -27,22 +34,42 @@ export default function SponsorTier({ name, tagline, investment, funds, benefits
       )}
       {featured && (
         <div className="absolute top-4 right-4">
-          <span className="font-display text-[10px] tracking-widest bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-2 py-1">MOST POPULAR</span>
+          <span className="font-display text-[10px] tracking-widest bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-2 py-1">
+            MOST POPULAR
+          </span>
         </div>
       )}
       <div className="mb-6">
-        <p className="font-display text-xs tracking-widest text-[hsl(var(--muted-foreground))] mb-1">{tagline.toUpperCase()}</p>
-        <h3 className={`font-display text-4xl tracking-wider ${featured ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--foreground))]"}`}>{name.toUpperCase()}</h3>
+        <p className="font-display text-sm tracking-widest text-[hsl(var(--muted-foreground))] mb-1">
+          {tagline.toUpperCase()}
+        </p>
+        <h3
+          className={`font-display text-4xl tracking-wider ${featured ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--foreground))]"}`}
+        >
+          {name.toUpperCase()}
+        </h3>
       </div>
       <div className="mb-6 pb-6 border-b border-[hsl(var(--border))]">
-        <p className="font-display text-3xl text-[hsl(var(--foreground))]">{investment}</p>
-        <p className="text-[hsl(var(--muted-foreground))] text-sm mt-1">minimum annual commitment</p>
-        <p className="text-[hsl(var(--primary))] text-sm mt-2 font-medium">{funds}</p>
+        <p className="font-display text-3xl text-[hsl(var(--foreground))]">
+          {investment}
+        </p>
+        <p className="text-[hsl(var(--muted-foreground))] text-sm mt-1">
+          minimum annual commitment
+        </p>
+        <p className="text-[hsl(var(--primary))] text-sm mt-2 font-medium">
+          {funds}
+        </p>
       </div>
       <ul className="space-y-3 flex-1">
         {benefits.map((benefit) => (
-          <li key={benefit} className="flex items-start gap-3 text-sm text-[hsl(var(--muted-foreground))]">
-            <Check size={14} className="text-[hsl(var(--primary))] mt-0.5 flex-shrink-0" />
+          <li
+            key={benefit}
+            className="flex items-start gap-3 text-sm text-[hsl(var(--muted-foreground))]"
+          >
+            <Check
+              size={14}
+              className="text-[hsl(var(--primary))] mt-0.5 flex-shrink-0"
+            />
             <span>{benefit}</span>
           </li>
         ))}

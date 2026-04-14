@@ -37,17 +37,24 @@ export default function Navbar() {
         style={{
           backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
           backgroundColor: scrolled ? "rgba(10,10,14,0.92)" : "transparent",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+          borderBottom: scrolled
+            ? "1px solid rgba(255,255,255,0.06)"
+            : "1px solid transparent",
         }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
           <Link href="/" data-testid="link-logo">
             <div className="flex items-center gap-3 group cursor-pointer">
-              <div className="w-9 h-9 rounded-sm bg-[hsl(var(--primary))] flex items-center justify-center">
-                <span className="font-display text-[hsl(var(--primary-foreground))] text-sm tracking-wider">P³</span>
-              </div>
+              <img
+                src="/logo.jpeg"
+                alt="PCube Foundation logo"
+                className="w-10 h-10 rounded-sm object-cover"
+                loading="eager"
+                decoding="async"
+              />
               <span className="font-display text-xl tracking-widest text-[hsl(var(--foreground))] hidden sm:block">
-                PCUBE <span className="text-[hsl(var(--primary))]">FOUNDATION</span>
+                PCUBE{" "}
+                <span className="text-[hsl(var(--primary))]">FOUNDATION</span>
               </span>
             </div>
           </Link>
@@ -56,16 +63,30 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const isActive = location === link.href;
               return (
-                <Link key={link.href} href={link.href} data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                >
                   <span className="relative text-sm font-medium tracking-wide cursor-pointer group">
-                    <span className={isActive ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors duration-200"}>
+                    <span
+                      className={
+                        isActive
+                          ? "text-[hsl(var(--primary))]"
+                          : "text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))] transition-colors duration-200"
+                      }
+                    >
                       {link.label}
                     </span>
                     {isActive && (
                       <motion.span
                         layoutId="nav-underline"
                         className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[hsl(var(--primary))]"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
                   </span>
@@ -116,7 +137,10 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.4 }}
                 >
-                  <Link href={link.href} data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, "-")}`}>
+                  <Link
+                    href={link.href}
+                    data-testid={`link-mobile-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
                     <span className="font-display text-4xl tracking-widest text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors duration-200 cursor-pointer">
                       {link.label.toUpperCase()}
                     </span>

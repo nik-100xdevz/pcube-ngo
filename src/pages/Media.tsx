@@ -3,7 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
-const categories = ["All", "Training", "Matches", "Events", "Milestones", "Community"];
+const categories = [
+  "All",
+  "Training",
+  "Matches",
+  "Events",
+  "Milestones",
+  "Community",
+];
 
 type GalleryItem = {
   id: number;
@@ -18,70 +25,92 @@ const gallery: GalleryItem[] = [
     id: 1,
     category: "Training",
     title: "Morning drills, winter 2024",
-    imageUrl: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 2,
     category: "Milestones",
     title: "Arjun's national selection ceremony",
-    imageUrl: "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-square",
   },
   {
     id: 3,
     category: "Training",
     title: "Goalkeeping session",
-    imageUrl: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[3/4]",
   },
   {
     id: 4,
     category: "Community",
     title: "School outreach, Thane Municipal School",
-    imageUrl: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 5,
     category: "Matches",
     title: "District championship semi-final",
-    imageUrl: "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-square",
   },
   {
     id: 6,
     category: "Events",
     title: "Annual felicitation ceremony",
-    imageUrl: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[4/3]",
   },
   {
     id: 7,
     category: "Training",
     title: "Fitness conditioning camp",
-    imageUrl: "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[3/4]",
   },
   {
     id: 8,
     category: "Milestones",
     title: "Sneha's school games selection",
-    imageUrl: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-square",
   },
   {
     id: 9,
     category: "Community",
     title: "Parent orientation day",
-    imageUrl: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80&auto=format&fit=crop",
+    imageUrl:
+      "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80&auto=format&fit=crop",
     aspectClass: "aspect-[4/3]",
   },
 ];
 
 const videos = [
-  { id: 1, title: "PCube Foundation — Our Story", thumbnail: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop", description: "The origin story of PCube Foundation and the children who made it possible." },
-  { id: 2, title: "Training Day: Field Hockey", thumbnail: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&q=80&auto=format&fit=crop", description: "A full day at PCube's field hockey training ground in Thane." },
+  {
+    id: 1,
+    title: "PCube Foundation — Our Story",
+    thumbnail:
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80&auto=format&fit=crop",
+    description:
+      "The origin story of PCube Foundation and the children who made it possible.",
+  },
+  {
+    id: 2,
+    title: "Training Day: Field Hockey",
+    thumbnail:
+      "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=800&q=80&auto=format&fit=crop",
+    description: "A full day at PCube's field hockey training ground in Thane.",
+  },
 ];
 
 export default function Media() {
@@ -89,30 +118,47 @@ export default function Media() {
   const [lightboxItem, setLightboxItem] = useState<GalleryItem | null>(null);
   const prefersReduced = useReducedMotion();
 
-  const filtered = activeCategory === "All" ? gallery : gallery.filter(g => g.category === activeCategory);
+  const filtered =
+    activeCategory === "All"
+      ? gallery
+      : gallery.filter((g) => g.category === activeCategory);
 
   const navigate = (dir: "prev" | "next") => {
     if (!lightboxItem) return;
-    const idx = filtered.findIndex(g => g.id === lightboxItem.id);
-    const nextIdx = dir === "prev" ? (idx - 1 + filtered.length) % filtered.length : (idx + 1) % filtered.length;
+    const idx = filtered.findIndex((g) => g.id === lightboxItem.id);
+    const nextIdx =
+      dir === "prev"
+        ? (idx - 1 + filtered.length) % filtered.length
+        : (idx + 1) % filtered.length;
     setLightboxItem(filtered[nextIdx]);
   };
 
   return (
     <main>
-      <a href="#media-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-[hsl(var(--primary-foreground))]">
+      <a
+        href="#media-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[hsl(var(--primary))] focus:text-[hsl(var(--primary-foreground))]"
+      >
         Skip to content
       </a>
 
-      <section id="media-content" aria-label="Media hero" className="pt-40 pb-20 lg:pt-48 lg:pb-28 border-b border-[hsl(var(--border))]">
+      <section
+        id="media-content"
+        aria-label="Media hero"
+        className="pt-40 pb-20 lg:pt-48 lg:pb-28 border-b border-[hsl(var(--border))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={prefersReduced ? {} : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">DOCUMENTING THE JOURNEY</span>
-            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] tracking-tight text-[hsl(var(--foreground))] mt-2 leading-none">MEDIA</h1>
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              DOCUMENTING THE JOURNEY
+            </span>
+            <h1 className="font-display text-[clamp(3rem,9vw,7rem)] tracking-tight text-[hsl(var(--foreground))] mt-2 leading-none">
+              MEDIA
+            </h1>
           </motion.div>
         </div>
       </section>
@@ -121,18 +167,26 @@ export default function Media() {
       <section aria-label="Photo gallery" className="py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="mb-8">
-            <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">PHOTO GALLERY</span>
-            <h2 className="font-display text-4xl tracking-tight text-[hsl(var(--foreground))] mt-2">IN PICTURES</h2>
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              PHOTO GALLERY
+            </span>
+            <h2 className="font-display text-4xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+              IN PICTURES
+            </h2>
           </div>
 
-          <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Gallery categories">
+          <div
+            className="flex flex-wrap gap-2 mb-10"
+            role="tablist"
+            aria-label="Gallery categories"
+          >
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 role="tab"
                 aria-selected={activeCategory === cat}
-                className={`font-display text-xs tracking-widest px-4 py-2 border transition-all duration-200 ${
+                className={`font-display text-sm tracking-widest px-4 py-2 border transition-all duration-200 ${
                   activeCategory === cat
                     ? "border-[hsl(var(--primary))] text-[hsl(var(--primary))] bg-[hsl(var(--primary))]/5"
                     : "border-[hsl(var(--border))] text-[hsl(var(--muted-foreground))] hover:border-[hsl(var(--primary))]/40"
@@ -165,7 +219,9 @@ export default function Media() {
                   aria-label={`View ${item.title}`}
                   data-testid={`gallery-item-${item.id}`}
                 >
-                  <div className={`relative ${item.aspectClass} overflow-hidden`}>
+                  <div
+                    className={`relative ${item.aspectClass} overflow-hidden`}
+                  >
                     <img
                       src={item.imageUrl}
                       alt={item.title}
@@ -177,8 +233,12 @@ export default function Media() {
                       <ZoomIn className="text-white" size={28} />
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-gradient-to-t from-black/80 to-transparent">
-                      <p className="font-display text-xs tracking-wider text-white">{item.title.toUpperCase()}</p>
-                      <span className="text-white/50 text-[10px]">{item.category}</span>
+                      <p className="font-display text-xs tracking-wider text-white">
+                        {item.title.toUpperCase()}
+                      </p>
+                      <span className="text-white/50 text-[10px]">
+                        {item.category}
+                      </span>
                     </div>
                   </div>
                 </motion.button>
@@ -189,11 +249,18 @@ export default function Media() {
       </section>
 
       {/* VIDEO SECTION */}
-      <section aria-label="Video gallery" className="py-20 lg:py-28 bg-[hsl(var(--card))]">
+      <section
+        aria-label="Video gallery"
+        className="py-20 lg:py-28 bg-[hsl(var(--card))]"
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="mb-12">
-            <span className="font-display text-xs tracking-widest text-[hsl(var(--primary))]">YOUTUBE CHANNEL</span>
-            <h2 className="font-display text-4xl tracking-tight text-[hsl(var(--foreground))] mt-2">WATCH THE JOURNEY</h2>
+            <span className="font-display text-sm tracking-widest text-[hsl(var(--primary))]">
+              YOUTUBE CHANNEL
+            </span>
+            <h2 className="font-display text-4xl tracking-tight text-[hsl(var(--foreground))] mt-2">
+              WATCH THE JOURNEY
+            </h2>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {videos.map((video) => (
@@ -220,11 +287,17 @@ export default function Media() {
                   </div>
                   <div className="absolute inset-0 bg-black/20" />
                   <div className="absolute top-3 right-3">
-                    <span className="font-display text-[10px] tracking-widest bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-2 py-1">YOUTUBE</span>
+                    <span className="font-display text-[10px] tracking-widest bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-2 py-1">
+                      YOUTUBE
+                    </span>
                   </div>
                 </div>
-                <h3 className="font-display text-lg tracking-wider text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors duration-200">{video.title.toUpperCase()}</h3>
-                <p className="text-[hsl(var(--muted-foreground))] text-sm mt-1">{video.description}</p>
+                <h3 className="font-display text-lg tracking-wider text-[hsl(var(--foreground))] group-hover:text-[hsl(var(--primary))] transition-colors duration-200">
+                  {video.title.toUpperCase()}
+                </h3>
+                <p className="text-[hsl(var(--muted-foreground))] text-sm mt-1">
+                  {video.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -258,7 +331,7 @@ export default function Media() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              onClick={e => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
               className="relative max-w-4xl w-full"
             >
               <img
@@ -267,8 +340,12 @@ export default function Media() {
                 className="w-full max-h-[75vh] object-contain"
               />
               <div className="mt-4">
-                <p className="font-display text-sm tracking-wider text-white">{lightboxItem.title.toUpperCase()}</p>
-                <span className="text-white/50 text-xs">{lightboxItem.category}</span>
+                <p className="font-display text-sm tracking-wider text-white">
+                  {lightboxItem.title.toUpperCase()}
+                </p>
+                <span className="text-white/50 text-xs">
+                  {lightboxItem.category}
+                </span>
               </div>
             </motion.div>
             <button

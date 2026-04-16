@@ -25,7 +25,7 @@ const programs = [
     description:
       "Our flagship program — structured coaching, equipment support, and a proven pathway to national competition.",
     status: "active" as const,
-    icon: "🏑",
+    // icon: "🏑",
     accentColor: "#f5a623",
     imageUrl:
       "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=640&q=80&auto=format&fit=crop",
@@ -35,7 +35,7 @@ const programs = [
     description:
       "Systematic identification and training pipeline for gifted youth footballers across Thane District.",
     status: "expanding" as const,
-    icon: "⚽",
+    // icon: "⚽",
     imageUrl:
       "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=640&q=80&auto=format&fit=crop",
   },
@@ -44,7 +44,7 @@ const programs = [
     description:
       "Track & field development program nurturing sprinters, jumpers, and middle-distance runners.",
     status: "expanding" as const,
-    icon: "🏃",
+    // icon: "🏃",
     imageUrl:
       "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=640&q=80&auto=format&fit=crop",
   },
@@ -53,7 +53,7 @@ const programs = [
     description:
       "Structured batting, bowling, and fielding programs with competitive league exposure.",
     status: "expanding" as const,
-    icon: "🏏",
+    // icon: "",
     imageUrl:
       "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=640&q=80&auto=format&fit=crop",
   },
@@ -62,7 +62,7 @@ const programs = [
     description:
       "Reviving the roots of Indian sport — disciplined training and regional tournament participation.",
     status: "expanding" as const,
-    icon: "🤼",
+    // icon: "🤼",
     imageUrl:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=640&q=80&auto=format&fit=crop",
   },
@@ -71,7 +71,7 @@ const programs = [
     description:
       "Court-based program with technical skill development and inter-district tournament exposure.",
     status: "expanding" as const,
-    icon: "🏸",
+    // icon: "🏸",
     imageUrl:
       "https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=640&q=80&auto=format&fit=crop",
   },

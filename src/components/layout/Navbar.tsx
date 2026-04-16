@@ -46,9 +46,9 @@ export default function Navbar() {
           <Link href="/" data-testid="link-logo">
             <div className="flex items-center gap-3 group cursor-pointer">
               <img
-                src="/logo.jpeg"
+                src="/logo-2.png"
                 alt="PCube Foundation logo"
-                className="w-10 h-10 rounded-sm object-cover"
+                className="w-14 h-14 rounded-sm object-cover"
                 loading="eager"
                 decoding="async"
               />

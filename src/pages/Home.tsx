@@ -9,7 +9,6 @@ import {
   Dumbbell,
   Flag,
   Medal,
-  ShieldCheck,
   Trophy,
   Users,
 } from "lucide-react";
@@ -318,30 +317,6 @@ export default function Home() {
                   SPONSOR AN ATHLETE →
                 </motion.button>
               </Link>
-            </motion.div>
-
-            <motion.div
-              initial={prefersReduced ? {} : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
-            >
-              {[
-                "80G Tax Exemption",
-                "Child-Safe Coaching Practices",
-                "Transparent Impact Reporting",
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex items-center gap-2 border border-[hsl(var(--foreground))]/20 px-3 py-1.5 text-xs tracking-wide text-[hsl(var(--muted-foreground))]"
-                >
-                  <ShieldCheck
-                    size={14}
-                    className="text-[hsl(var(--primary))]"
-                  />
-                  {item}
-                </span>
-              ))}
             </motion.div>
           </motion.div>
         </div>
